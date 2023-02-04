@@ -8,7 +8,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 
 // Роут, отвечающий на запрос GET /login
-app.get('/login', async (req, res) =>
+app.get('/login', async (req, res) => {
   // Отправляем в ответ HTML-форму
   res.send(`
   <form name="login" method="POST">
@@ -16,7 +16,8 @@ app.get('/login', async (req, res) =>
     <label>Пароль: <input name="password" type="password" /></label>
     <button type="submit">Войти</button>
   </form>
-  `));
+  `);
+});
 
 // Роут, отвечающий на запрос POST /login
 app.post('/login', (req, res) => {

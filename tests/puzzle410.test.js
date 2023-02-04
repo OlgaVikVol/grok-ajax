@@ -1,14 +1,14 @@
 describe('Puzzle 410', () => {
   global.testSanity('puzzle410');
   describe('Исходный код', () => {
-    it('использует шаблонизатор и статику', async () => {
+    it('использует React SSR и статику', async () => {
       const src = await global.getSource('puzzle410', 'server.js');
       expect(src).toContain('express.static');
       expect(src).toContain('public');
-      expect(src).toContain('.render(');
+      expect(src).toContain('renderToStaticMarkup');
     });
-    it('шаблон login.hbs корректный', async () => {
-      const src = await global.getSource('puzzle410', 'views/login.hbs');
+    it('React-компонент Login.jsx корректный', async () => {
+      const src = await global.getSource('puzzle410', 'views/Login.jsx');
       expect(src).toContain('<form');
       expect(src).toContain('button');
       expect(src).toContain('input');
@@ -16,12 +16,12 @@ describe('Puzzle 410', () => {
       expect(src).toContain('name="password"');
       expect(src).toContain('type="password"');
     });
-    it('шаблон layout.hbs корректный', async () => {
-      const src = await global.getSource('puzzle410', 'views/layout.hbs');
+    it('React-компонент Layout.jsx корректный', async () => {
+      const src = await global.getSource('puzzle410', 'views/Layout.jsx');
       expect(src).toContain('/js/client.js');
       expect(src).toContain('<script');
       expect(src).toContain('defer');
-      expect(src).toContain('{{{body}}}');
+      expect(src).toContain('children');
     });
     it('client.js корректный', async () => {
       const src = await global.getSource('puzzle410', 'public/js/client.js');

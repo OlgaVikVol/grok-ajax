@@ -7,7 +7,7 @@ const app = express();
 // Роут, отвечающий на запрос GET /answer
 app.get('/answer', (req, res) => {
   // Отправляем в ответ 42
-  return res.send(String(42));
+  res.send(String(42));
 });
 
 // Запуск сервера по порту 3000

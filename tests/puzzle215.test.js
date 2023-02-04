@@ -1,22 +1,20 @@
 describe('Puzzle 215', () => {
   global.testSanity('puzzle215');
   describe('Исходный код', () => {
-    it('использует шаблонизатор', async () => {
+    it('использует React SSR', async () => {
       const src = await global.getSource('puzzle215', 'server.js');
-      expect(src).toContain('.render(');
+      expect(src).toContain('renderToStaticMarkup');
     });
-    it('шаблон index.hbs корректный', async () => {
-      const src = await global.getSource('puzzle215', 'views/index.hbs');
+    it('React-компонент Main.jsx корректный', async () => {
+      const src = await global.getSource('puzzle215', 'views/Main.jsx');
       expect(src).toContain('<form');
       expect(src).toContain('action=');
       expect(src).toContain('name=');
-      expect(src).not.toContain('this');
     });
-    it('шаблон hello.hbs корректный', async () => {
-      const src = await global.getSource('puzzle215', 'views/hello.hbs');
-      expect(src).toContain('{{');
-      expect(src).toContain('}}');
-      expect(src).not.toContain('this');
+    it('React-компонент Hello.jsx корректный', async () => {
+      const src = await global.getSource('puzzle215', 'views/Hello.jsx');
+      expect(src).toContain('{');
+      expect(src).toContain('}');
     });
   });
   describe('Роут GET /', () => {
@@ -31,7 +29,7 @@ describe('Puzzle 215', () => {
     it('выводит корректный текст', async () => {
       const name = encodeURIComponent('Фёдор');
       const res = await global.fetch(`${global.url}/hello`, `name=${name}`);
-      expect(res.trim()).toEqual('Привет, Фёдор!');
+      expect(res.trim()).toContain('<span>Привет, Фёдор!</span>');
     });
   });
   afterAll(() => global.puzzle215.kill());

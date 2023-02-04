@@ -7,7 +7,7 @@ const app = express();
 // Роут, отвечающий на запрос GET /json
 app.get('/json', (req, res) => {
   // Отправляем в ответ JSON-объект
-  return res.json({
+  res.json({
     message: 'Hello!',
   });
 });

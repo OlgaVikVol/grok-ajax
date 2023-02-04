@@ -1,11 +1,11 @@
 describe('Puzzle 305', () => {
   global.testSanity('puzzle305');
   describe('Исходный код', () => {
-    it('использует шаблонизатор и статику', async () => {
+    it('использует React SSR и статику', async () => {
       const src = await global.getSource('puzzle305', 'server.js');
       expect(src).toContain('express.static');
       expect(src).toContain('public');
-      expect(src).toContain('.render(');
+      expect(src).toContain('renderToStaticMarkup');
     });
     it('стиль корректный', async () => {
       const src = await global.getSource('puzzle305', 'public/styles/style.css');
@@ -15,15 +15,15 @@ describe('Puzzle 305', () => {
       const src = await global.getSource('puzzle305', 'public/images/logo.svg');
       expect(src).toContain('<circle');
     });
-    it('шаблон index.hbs корректный', async () => {
-      const src = await global.getSource('puzzle305', 'views/index.hbs');
+    it('React-компонент Main.jsx корректный', async () => {
+      const src = await global.getSource('puzzle305', 'views/Main.jsx');
       expect(src).toContain('<img');
       expect(src).toContain('logo.svg');
     });
-    it('шаблон layout.hbs корректный', async () => {
-      const src = await global.getSource('puzzle305', 'views/layout.hbs');
+    it('React-компонент Layout.jsx корректный', async () => {
+      const src = await global.getSource('puzzle305', 'views/Layout.jsx');
       expect(src).toContain('/style.css');
-      expect(src).toContain('{{{body}}}');
+      expect(src).toContain('children');
     });
   });
   describe('Роут GET /', () => {

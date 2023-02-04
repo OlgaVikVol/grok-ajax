@@ -4,8 +4,8 @@ document.querySelector('button').addEventListener('click', async () => {
   try {
     const response = await fetch('/next');
     jsonResponse = await response.json();
+    countElement.innerText = jsonResponse.count;
   } catch (e) {
-    return console.error(e);
+    console.error(e);
   }
-  countElement.innerText = jsonResponse.count;
 });

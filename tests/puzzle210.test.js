@@ -1,15 +1,14 @@
 describe('Puzzle 210', () => {
   global.testSanity('puzzle210');
   describe('Исходный код', () => {
-    it('использует шаблонизатор', async () => {
+    it('использует React SSR', async () => {
       const src = await global.getSource('puzzle210', 'server.js');
-      expect(src).toContain('.render(');
+      expect(src).toContain('renderToStaticMarkup');
     });
-    it('шаблон корректный', async () => {
-      const src = await global.getSource('puzzle210', 'views/index.hbs');
-      expect(src).toContain('{{');
-      expect(src).toContain('}}');
-      expect(src).not.toContain('this');
+    it('React-компонент корректный', async () => {
+      const src = await global.getSource('puzzle210', 'views/Main.jsx');
+      expect(src).toContain('{');
+      expect(src).toContain('}');
     });
   });
   describe('Роут GET /', () => {

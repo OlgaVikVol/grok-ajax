@@ -4,7 +4,6 @@ const { compareTwoStrings } = require('string-similarity');
 
 const logger = console;
 
-
 /**
  * Рассчитывает оценку похожести двух файлов с кодом
  * @param {string} fileA Файл А

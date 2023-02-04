@@ -1,13 +1,16 @@
 describe('Puzzle 205', () => {
   global.testSanity('puzzle205');
   describe('Исходный код', () => {
-    it('использует шаблонизатор', async () => {
+    it('использует React SSR', async () => {
       const src = await global.getSource('puzzle205', 'server.js');
-      expect(src).toContain('.render(');
+      expect(src).toContain('renderToStaticMarkup');
     });
-    it('использует шаблон', async () => {
-      const src = await global.getSource('puzzle205', 'views/layout.hbs');
-      expect(src).toContain('{{{body}}}');
+    it('использует Layout', async () => {
+      const layoutSrc = await global.getSource('puzzle205', 'views/Layout.jsx');
+      expect(layoutSrc).toContain('{children}');
+
+      const mainSrc = await global.getSource('puzzle205', 'views/Main.jsx');
+      expect(mainSrc).toContain('<Layout');
     });
   });
   describe('Роут GET /', () => {
